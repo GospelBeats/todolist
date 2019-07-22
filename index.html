@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link href="https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap" rel="stylesheet">
+<title>To Do List</title>
+	<style>
+		.bg {
+			background-image: url(bg.jpg);
+			background-repeat: no-repeat;
+			background-size: cover; 
+			background-color: #ebced0;
+			}
+
+			.rotated {
+			transform: rotate(20deg);
+			-ms-transform: rotate(20deg); /* IE 9 */
+			-moz-transform: rotate(20deg); /* Firefox */
+			-webkit-transform: rotate(20deg); /* Safari and Chrome */
+			-o-transform: rotate(20deg); /* Opera */
+			}
+	</style>
+	
+</head>
+
+<body class="bg">
+	
+
+<div class="container mt-5">
+			<div class="row">
+				
+				<div class="col-6 w3-round-large" style="background-color:#f1e1e2">
+					<h1 class="mb-5" style="font-family: 'Permanent Marker', cursive;">The To Do List</h1>
+
+					<form><input type="text" id="listItem" maxlength="35" style="height: 37px">
+					<button id="clk" class="w3-button w3-btn w3-blue w3-round w3-hover-opacity">Add</button>
+					<p id="error"></p>
+					</form>
+
+					<table id="table">
+					   <thead>
+						<tr>
+							<th class="w3-padding-16">To Do Items</th>
+						</tr>
+					   </thead>
+					   <tbody>
+						  
+					   </tbody>
+			
+					</table>
+					
+		</div> <!-- col one -->
+
+		<div class="col-6">	
+				<img id="img" src="pencil.png" alt="pencil image">
+		</div>		
+				
+	</div> <!-- main row -->
+</div>	<!-- main container-->
+	
+<script>
+	
+$(document).ready(function(){
+
+	// pencil animation on key press
+	document.addEventListener('keyup', function(){
+	$("#img").toggleClass('rotated');
+	});
+
+// click to add list item	
+$("#clk").on('click', function(e){
+	e.preventDefault();
+
+// store user input in variable
+let item = $("#listItem").val();
+	
+// validation user input
+	if (item === ""){
+		$("#error").text("** Please Enter A To Do Item **").css("color", "red"); 
+		// show error for 1.5 seconds
+			setTimeout(function(){ 
+						$("#error").text(""); 
+						}, 1500);	
+		} else {
+			
+		// create to do list item
+		$("#table > tbody").append($("<div>").html(item + " " + "<button>Delete</button><br><hr>").addClass("del"));	
+								   
+		// clear input box
+		$("#listItem").val("");
+
+		} // end of if statement
+
+// remove to do list button
+$(".del").on('click', function(e){
+		let delItem = e.currentTarget;
+		delItem.remove();
+});
+	
+	}); // end on click function
+	
+}); // document ready function
+	
+</script>
+</body>
+	
+</html>
