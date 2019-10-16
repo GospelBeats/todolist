@@ -12,4 +12,4 @@ Delete to do items
 
 onkeyup pencil animation
 
-![APP Sreenshot](https://github.com/GospelBeats/todolist/master/site.JPG)
+![APP Sreenshot](https://github.com/GospelBeats/todolist/blob/master/site.JPG)
